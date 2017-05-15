@@ -1,0 +1,7 @@
+{
+  "generator-phaser": {
+    "projectName": "band-band",
+    "esVersion": 6,
+    "gameFolder": "boilerplate"
+  }
+}
