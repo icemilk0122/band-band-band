@@ -3,12 +3,10 @@ class Menu extends Phaser.State {
   constructor() {
     super();
   }
-  
+
   create() {
-    var text = this.add.text(this.game.width * 0.5, this.game.height * 0.5, 'Gameover', {
-      font: '42px Arial', fill: '#ffffff', align: 'center'
-    });
-    text.anchor.set(0.5);
+    var coverBg = this.add.sprite(this.world.centerX, 0, 'endBg');
+    coverBg.anchor.set(0.5, 0);
 
     this.saveVarsToLocalStorage();
 
@@ -27,7 +25,7 @@ class Menu extends Phaser.State {
 
   restartGame () {
     this.resetGlobalVariables();
-    this.game.state.start('menu');
+    this.game.state.start('main');
   }
 
 }

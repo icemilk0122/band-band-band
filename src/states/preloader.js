@@ -18,7 +18,7 @@ class Preloader extends Phaser.State {
 
   update() {
       if (this.ready) {
-        this.game.state.start('menu');
+        this.game.state.start('main');
       }
   }
 
@@ -28,6 +28,8 @@ class Preloader extends Phaser.State {
       this.game.load.spritesheet('button', 'assets/button.png', 82, 82, 2);
       this.game.load.image('button_blue', 'assets/bluebeat.png', 82, 82);
       this.game.load.audio('bgm', ['assets/audio/Something_Just_Lik.mp3']);
+      this.game.load.image('mainBg', 'assets/tv-open-02.png', 1920, 1080);
+      this.game.load.image('endBg', 'assets/tv-end-01.png', 1920, 1080);
   }
 
   onLoadComplete() {
