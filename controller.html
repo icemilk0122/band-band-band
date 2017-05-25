@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.4.0.js"></script>
+    <script type="text/javascript">
+        // creation of a new AirConsole instance
+        var airconsole = new AirConsole();
+        // function to be executed every 3 seconds
+        function sendStart() {
+            airconsole.message(AirConsole.SCREEN, {"type":"startMenu"});
+        }
+        function sendMessge(val) {
+            airconsole.message(AirConsole.SCREEN, {"type":"startGame","val":val});
+        }
+        function sendReady() {
+            airconsole.message(AirConsole.SCREEN,{"type":"sendReady"});
+        }
+        airconsole.onMessage = function(deviceId, data) {
+          if(data.type == "sendID")
+          {
+            $("."+data.id+"p").show();
+          }
+          if(data.type == "gamemenu")
+          {
+            $(".main").hide();
+            $(".menu").show();
+          }
+          if(data.type == "gamestart")
+          {
+            $(".menu").hide();
+            $(".game").show();
+            $("."+data.id+"p").show();
+          }
+        }
+    </script>
+    <style media="screen">
+      body{
+        background: url("assets/mobile/game/phone-play-1-01.png");
+      }
+      /*.game{
+        display: -webkit-flex;
+        display:         flex;
+        -webkit-align-items: center;
+                align-items: center;
+        -webkit-justify-content: center;
+                justify-content: center;
+      }*/
+      .main{
+        text-align: center;
+        margin-top: 200px;
+      }
+      .game{
+        margin-top: 50px;
+      }
+      .game .bar{
+        display: inline-block;
+        width: 200px;
+      }
+      .game .buttons{
+        margin-top: 80px;
+      }
+      .button{
+        float: left;
+        width: 50%;
+      }
+      .button img{
+        width: 100%;
+      }
+      .button_red{
+        background: url("assets/mobile/game/red-butten.png");
+      }
+      .button_blue{
+        background: url("assets/mobile/game/blue-butten.png");
+      }
+      .menu {
+        margin-top: 50px;
+      }
+      .menu>div{
+        text-align: center;
+      }
+      .menu .player>div>img{
+        width: 70%;
+        display: inline-block;
+      }
+      /*.menu>div {
+        display: -webkit-flex;
+        display:         flex;
+        -webkit-align-items: center;
+                align-items: center;
+        -webkit-justify-content: center;
+                justify-content: center;
+      }*/
+    </style>
+</head>
+
+<body>
+    <div class="main">
+      <div onclick="sendStart()"><img src="assets/mobile/phone-start-02.png"></div>
+    </div>
+    <div class="menu" style="display:none;">
+      <div class="1p player" style="display:none;">
+        <div><img src="assets/mobile/menu/bobi.png"></div>
+        <a href="#" onclick="sendReady()"><img src="assets/mobile/menu/bobi'sok.png"></a>
+      </div>
+      <div class="2p player" style="display:none;">
+        <div><img src="assets/mobile/menu/momo.png"></div>
+        <a href="#" onclick="sendReady()"><img src="assets/mobile/menu/momo'sok.png"></a>
+      </div>
+      <div class="3p player" style="display:none;">
+        <div><img src="assets/mobile/menu/chipa.png"></div>
+        <a href="#" onclick="sendReady()"><img src="assets/mobile/menu/chipa'sok.png"></a>
+      </div>
+      <div class="4p player" style="display:none;">
+        <div><img src="assets/mobile/menu/juju.png"></div>
+        <a href="#" onclick="sendReady()"><img src="assets/mobile/menu/juju'sok.png"></a>
+      </div>
+      <div class="5p player" style="display:none;">
+        <div><img src="assets/mobile/menu/dodo.png"></div>
+        <a href="#" onclick="sendReady()"><img src="assets/mobile/menu/dodo'sok.png"></a>
+      </div>
+    </div>
+    <div class="game" style="display:none;">
+      <div><img class="1p bar" src='assets/game/bobi.png' style="display:none;"></div>
+      <div><img class="2p bar" src='assets/game/momo.png' style="display:none;"></div>
+      <div><img class="3p bar" src='assets/game/chipa.png' style="display:none;"></div>
+      <div><img class="4p bar" src='assets/game/juju.png' style="display:none;"></div>
+      <div><img class="5p bar" src='assets/game/dodo.png' style="display:none;"></div>
+      <div class="buttons">
+        <div class="button" onclick="sendMessge('0')"><img src="assets/mobile/game/red-butten.png"></div>
+        <div class="button" onclick="sendMessge('1')"><img src="assets/mobile/game/blue-butten.png"></div>
+      </div>
+    </div>
+    <div class="end" style="display:none;">
+    </div>
+</body>
+
+</html>
