@@ -18,7 +18,7 @@ class NotesHandler extends Phaser.Sprite {
 		}
 		if (this.notes.length > 0)	{
 			if (this.notes[0].sprite.y > GAME_HEIGHT-300) {
-				this.onHit("MISS");
+				this.onHit("MISS",this.string.stringNumber);
 				this.removeNote();
 			}
 		}
@@ -32,9 +32,9 @@ class NotesHandler extends Phaser.Sprite {
 			if (match <= first.sprite.height) {
 				this.removeNote();
 				if (match <= 5)
-					this.onHit("GREAT");
+					this.onHit("GREAT",this.string.stringNumber);
 				else
-					this.onHit("GOOD");
+					this.onHit("GOOD",this.string.stringNumber);
 			}
 		}
 	}
@@ -53,10 +53,17 @@ class Note extends Phaser.Sprite {
   constructor(game,string) {
     super(game);
 		this.game = game;
-		this.sprite = game.add.sprite(string.sprite.x+2, 0 , 'button_blue');
+    this.string = string;
+    if(this.string.stringNumber%2 == 1)
+    {
+      this.sprite = game.add.sprite(string.sprite.x+2, 0 , 'button_blue');
+    }else {
+      this.sprite = game.add.sprite(string.sprite.x+2, 0 , 'button_red');
+    }
+
   }
 	move(){
-		this.sprite.y++;
+		this.sprite.y+=2;
 	}
 	destroy(){
 		this.sprite.destroy();

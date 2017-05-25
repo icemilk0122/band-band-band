@@ -9,7 +9,7 @@ class BanjoString extends Phaser.Sprite {
 		this.game = game;
 		this.name = key;
 		this.stringNumber = index+1;
-		this.sprite = this.game.add.sprite(getPosition(this.stringNumber), 0, 'common_string');
+    this.sprite = this.game.add.sprite(getPosition(this.stringNumber), 0, 'common_string'+(Math.floor(index/2)+1));  
 		this.notes = new NotesHandler(this.game,this);
 		this.key = this.game.input.keyboard.addKey(key);
 		this.key.onDown.add(this.pulse, this);
